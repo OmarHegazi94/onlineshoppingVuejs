@@ -1,0 +1,19 @@
+
+.card {
+    border: 1px solid #e0e0e0;
+    width: 22rem;
+}
+
+.card-img-top {
+    height: 200px;
+}
+
+.saleClass {
+    border-radius: 10%;
+    background-color: red;
+    color: #fff;
+    font-size: 1.5rem;
+    width: 3rem;
+    text-align: center;
+    transform: rotate(-45deg);    
+}

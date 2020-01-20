@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vuejs Lab</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <div id="main">
+        <div class="container my-5">
+            <button class="btn btn-warning font-weight-bold">my Courses</button>
+
+            <div class="row">
+
+                    <div v-for="course in courses" class="card mx-auto my-2">
+                        <img :src="course.courseImg" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">CourseName {{ course.courseName }}</h5>
+                            <p class="card-text">Category {{ course.category }}</p>
+                            <p class="card-text" :class="course.inSale?'saleClass':''"> {{ course.price }}$</p>
+                            <p class="card-text">Students Number {{ course.students }}</p>
+                            <button :disabled="course.hasStarted"  class="btn btn-primary btn-block font-weight-bold">join</button>
+                        </div>
+                    </div>
+    
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- SCRIPTS -->
+    <script src="./js/vueobject.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
