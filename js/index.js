@@ -65,6 +65,13 @@ vm = new Vue({
         }
     },
     computed: {
+        totalPrice: function(){
+            let totalprice = 0;
+            this.cart.items.forEach((item) => {
+                totalprice += item.product.price * item.quantity;
+            });
 
+            return totalprice;
+        }
     }
 });

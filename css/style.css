@@ -46,12 +46,12 @@ h6 {
     }
 }
 
-.nav-scroller {
+/* .nav-scroller {
     position: relative;
     z-index: 2;
     height: 2.75rem;
     overflow-y: hidden;
-}
+} */
 
 .nav-scroller .nav {
     display: -ms-flexbox;
