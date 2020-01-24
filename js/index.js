@@ -51,6 +51,17 @@ vm = new Vue({
                 }
             }
             product.instock--;
+        },
+        increaseQuantity: function(item){
+            item.quantity++;
+            item.product.instock--;
+        },
+        decreaseQuantity: function(item){
+            item.quantity--;
+            item.product.instock++;
+            if(item.quantity == 0){
+                this.cart.items.splice(this.cart.items.indexOf(item), 1);
+            }
         }
     },
     computed: {

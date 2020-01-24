@@ -91,12 +91,10 @@
                         <tr v-for="item in cart.items">
                             <td>{{ item.product.name }}</td>
                             <td>{{ item.quantity }} &nbsp;
-                                <button @click="increaseQuantity(item)" type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm"
-                                    data-original-title="" title="">
+                                <button @click="increaseQuantity(item)" type="button" class="btn btn-success btn-just-icon btn-sm">
                                     <i class="material-icons">+</i>
                                 </button>
-                                <button @click="decreaseQuantity(item)" type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm"
-                                    data-original-title="" title="">
+                                <button @click="decreaseQuantity(item)" type="button" class="btn btn-danger btn-just-icon btn-sm">
                                     <i class="material-icons">-</i>
                                 </button>
                             </td>
