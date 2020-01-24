@@ -10,33 +10,144 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
+<style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+</style>
+<!-- Custom styles for this template -->
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<!-- Custom styles for this template -->
+<!-- <link href="blog.css" rel="stylesheet"> -->
+</head>
+
 <body>
 
-    <div id="main">
-        <div class="container my-5">
-            <button class="btn btn-warning font-weight-bold">my Courses</button>
 
-            <div class="row">
+    <main role="main" class="container" id="#main">
 
-                    <div v-for="course in courses" class="card mx-auto my-2">
-                        <img :src="course.courseImg" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">CourseName {{ course.courseName }}</h5>
-                            <p class="card-text">Category {{ course.category }}</p>
-                            <p class="card-text" :class="course.inSale?'saleClass':''"> {{ course.price }}$</p>
-                            <p class="card-text">Students Number {{ course.students }}</p>
-                            <button :disabled="course.hasStarted"  class="btn btn-primary btn-block font-weight-bold">join</button>
-                        </div>
+        <div class="container">
+            <header class="blog-header py-3">
+                <div class="row flex-nowrap justify-content-between align-items-center">
+                    <div class="col-4 pt-1">
+                        <a @click="cardActive = false" class="text-muted" href="#">Home</a>
                     </div>
-    
+                    <div class="col-4 text-center">
+                        <a class="blog-header-logo text-dark" href="#">Large</a>
+                    </div>
+                    <div class="col-4 d-flex justify-content-end align-items-center">
+                        <a @click="cardActive = true" class="btn btn-sm btn-outline-secondary" href="#">Show Cart</a>
+                    </div>
+                </div>
+            </header>
+
+            <div class="nav-scroller py-1 mb-2">
+                <nav class="nav d-flex justify-content-between">
+                    <a class="p-2 text-muted" href="#">category </a>
+                    <a class="p-2 text-muted" href="#">category 2</a>
+                    <a class="p-2 text-muted" href="#">category 3</a>
+                    <a class="p-2 text-muted" href="#">category 4</a>
+                    <a class="p-2 text-muted" href="#">category 5</a>
+                    <a class="p-2 text-muted" href="#">category 6</a>
+                    <a class="p-2 text-muted" href="#">category 7</a>
+                    <a class="p-2 text-muted" href="#">category 8</a>
+                    <a class="p-2 text-muted" href="#">category 9</a>
+                    <a class="p-2 text-muted" href="#">category 10</a>
+                    <a class="p-2 text-muted" href="#">category 11</a>
+                    <a class="p-2 text-muted" href="#">category 12</a>
+                </nav>         </div>
+
+        </div>
+
+        <div v-if="cardActive" class="jumbotron p-4 p-md-5 text-dark rounded">
+
+            <div v-if="cart.items.length > 0" class="alert alert-primary">
+                Sorry your cart doesn't have any items
+            </div>
+
+            <div class="table-responsive">
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Actions</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Develop</td>
+                            <td>2013</td>
+                            <td class="td-actions">
+                                <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm"
+                                    data-original-title="" title="">
+                                    <i class="material-icons">edit</i>
+                                </button>
+                                <button type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm"
+                                    data-original-title="" title="">
+                                    <i class="material-icons">close</i>
+                                </button>
+                            </td>
+                            <td>€ 99,225</td>
+
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </div>
+
+
+        <div v-if="cardActive == false" class="row mb-2">
+            <div v-for="product in products" class="col-md-6">
+                <div
+                    class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-2 d-flex flex-column position-static">
+                        <strong
+                            :class="[product.instock >10 ? 'text-primary' : '', product.instock < 10 ? 'text-warning' : '', product.instock < 5 ? 'text-danger' : '','d-inline-block', 'mb-1']">Stock:
+                            {{ product.instock }}</strong>
+                        <h3 class="mb-0">{{ product.name }}</h3>
+                        <div class="mb-1 text-muted">{{ product.price | currency }}</div>
+                        <p class="card-text mb-auto">
+                            {{ product.description }}
+                        </p>
+
+                        <button @click="addTocart(product)" :disabled="product.instock === 0"
+                            class="btn btn-primary font-weight-bold" style="margin-top: 0.5rem;">Add To Card</button>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img :src="product.image" :alt="product.name">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main><!-- /.container -->
+
+    <footer class="blog-footer">
+        <p>shopping template all rights reserved</p>
+        <p>
+            <a href="#">Back to top</a>
+        </p>
+    </footer>
 
 
 
-    <!-- SCRIPTS -->
+    <!--  ================= SCRIPTS ================= -->
+    <script src="./js/products.js"></script>
     <script src="./js/vueobject.js"></script>
+
     <script src="./js/index.js"></script>
 </body>
 
